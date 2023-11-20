@@ -2,6 +2,7 @@
   <ion-button (click)="dismissModal()">Close</ion-button>
 
   <ion-list>
+    <ion-input type="text" [(ngModel)]="inputed_word" text-right id="input" ></ion-input>
     <ion-item *ngFor="let item of items">
       <ion-label>{{ item.label }}</ion-label>
       <ion-checkbox [(ngModel)]="item.checked"> </ion-checkbox>

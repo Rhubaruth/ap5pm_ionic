@@ -14,12 +14,15 @@
 
 
   <div class="sideBySide">
-    <h1 class="header"> {{ allData.name.common }}</h1>
-    <img class="detailImage" src="{{ imageURL }}">
+    <h1 class="header"> {{ allData.query }}</h1>
   </div>
 
   <div id="columns">
 
+
+    <div *ngFor="let item of myArray">
+      {{ item["word"] }}
+    </div>
    
     <div id="right">
       <caption>WEEK START</caption>

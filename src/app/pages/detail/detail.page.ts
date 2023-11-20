@@ -13,6 +13,7 @@ export class DetailPage implements OnInit {
   population = "";
   startOfWeek = "";
   myDomain = "";
+  myArray=[];
 
 
   constructor(
@@ -20,19 +21,23 @@ export class DetailPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.allData = this.placeService.data[0]; 
+    // console.log(this.placeService.data)
+    this.allData = this.placeService.data; 
 
-    console.log("All data");
-    console.log(this.allData);
+    // console.log("All data");
+    // console.log(this.allData);
+
+    this.myArray = this.allData.result.slice(0, 10);
+    console.log(this.myArray)
 
     //new 
-    const url = this.allData.coatOfArms.png;
-    this.imageURL = url;
-    this.myDomain = this.allData.tld[0];
+    // const url = this.allData.coatOfArms.png;
+    // this.imageURL = url;
+    // this.myDomain = this.allData.tld[0];
     
-    this.startOfWeek = this.allData.startOfWeek;
-    this.population = this.allData.population;
-    this.region = this.allData.region;
+    // this.startOfWeek = this.allData.startOfWeek;
+    // this.population = this.allData.population;
+    // this.region = this.allData.region;
 
 
 
@@ -41,10 +46,6 @@ export class DetailPage implements OnInit {
 
 
     //this.myIframe = `<iframe src="${this.mapURL}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
-
-
-  
-    console.log(url);
   }
 
 }

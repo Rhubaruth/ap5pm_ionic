@@ -68,6 +68,7 @@ export class HomePage {
   fetchData(countries: any){ 
     this.countriesDataArray = [];
 
+    console.log(countries)
     for (var c of countries){
       const url = `https://api.datamuse.com/words?rel_jjb=${c.label}`;
     
@@ -76,7 +77,7 @@ export class HomePage {
           query: label,
           result: data,
         }
-        console.log(formatedData);
+        // console.log(formatedData);
         this.countriesDataArray.push(formatedData);
     
         // Step 3 save data
@@ -88,7 +89,7 @@ export class HomePage {
         };
     
         saveStoredItems();
-        console.warn(this.countriesDataArray);
+        // console.warn(this.countriesDataArray);
       };
     
       this.http.get(url).subscribe(subscribeFunction(c.label));

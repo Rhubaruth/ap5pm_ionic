@@ -11,6 +11,7 @@ import { Preferences } from '@capacitor/preferences';
 })
 export class WeatherModalComponent {
   items = this.getItems();
+  inputed_word: string = "";
   
   constructor(private modalCTRL: ModalController) {
     this.items = [
@@ -35,7 +36,6 @@ export class WeatherModalComponent {
       });
     }
 
-      console.log(value);
     };
 
     getStoredItems();
@@ -59,7 +59,12 @@ export class WeatherModalComponent {
     };
 
     saveStoredItems();
-    this.modalCTRL.dismiss(selectedItems, "location");
+    // this.modalCTRL.dismiss(selectedItems, "location");
+    var inputed = {
+      label: this.inputed_word,
+      checked: false,
+    }
+    this.modalCTRL.dismiss([inputed], "location");
    }
 
 
