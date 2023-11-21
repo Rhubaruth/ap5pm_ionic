@@ -19,53 +19,13 @@
 
   <div id="columns">
 
-
-    <div *ngFor="let item of myArray">
-      {{ item["word"] }}
-    </div>
-   
     <div id="right">
-      <caption>WEEK START</caption>
-      <h2>{{ startOfWeek }}</h2>
-
-      <caption>REGION</caption>
-      <h2>{{ region }}</h2>
-
-      <caption>POPULATION</caption>
-      <h2>{{ population }}</h2>
+      <div *ngFor="let item of myArray">
+        {{ item["word"] }}
+        <br>
+      </div>
     </div>
-
-
-    <div id="left">
-      <caption>WEEK START</caption>
-      <h2>{{ startOfWeek }}</h2>
-
-      <caption>REGION</caption>
-      <h2>{{ region }}</h2>
-
-      <caption>POPULATION</caption>
-      <h2>{{ population }}</h2>
-
-    </div>
-
-
-    <!---
-    <div id="left">
-
-      <caption>CITY</caption>
-      <h2>Data</h2>
-
-      <caption>CITY</caption>
-      <h2>Data</h2>
-
-      <caption>CITY</caption>
-      <h2>Data</h2>
-
-      <caption>CITY</caption>
-      <h2>Data</h2>
-    </div>
-  --->
-
+  
   </div>
 
 
