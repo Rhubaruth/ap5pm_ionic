@@ -21,11 +21,12 @@
     <ion-item *ngFor="let item of countriesDataArray">
       <h2> {{ item.query }} </h2>
 
-      <ion-item [routerLink]="['/detail', item.result[0].word]"
-                (click)="sendData(item)">
-                  {{ item.result[0].word }} 
-      </ion-item>
-
+      <div *ngIf="item.result.length > 0">
+        <ion-item [routerLink]="['/detail', item.result[0].word]"
+                  (click)="sendData(item)">
+                    {{ item.result[0].word }} 
+        </ion-item>
+      </div>
     </ion-item>
 
   
