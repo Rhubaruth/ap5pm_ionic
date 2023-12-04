@@ -38,7 +38,7 @@ export class WeatherModalComponent {
 
     };
 
-    getStoredItems();
+    // getStoredItems();
 
    }
 

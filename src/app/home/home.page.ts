@@ -60,17 +60,33 @@ export class HomePage {
     }
   }
 
+  async deleteItem(word: String){
+    var index =  this.countriesDataArray.findIndex(x => x.query==word);
+    console.log(index);
+
+    this.countriesDataArray.splice(index, 1)
+
+    const saveStoredItems = async () => {
+      await Preferences.set({
+        key: "homeFetchData",
+        value: JSON.stringify(this.countriesDataArray)
+      });
+    };
+
+    saveStoredItems();
+
+  }
 
   sendData(data: any){
     this.placesService.data = data;
   }
 
   fetchData(countries: any){ 
-    this.countriesDataArray = [];
+    // this.countriesDataArray = [];
 
     console.log(countries)
     for (var c of countries){
-      const url = `https://api.datamuse.com/words?rel_jjb=${c.label}`;
+      const url = `https://api.datamuse.com/words?rel_jjb=${c.label}&md=s`;
     
       const subscribeFunction = (label: string) => (data: any) => {
         var formatedData = {
