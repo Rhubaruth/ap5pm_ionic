@@ -81,16 +81,17 @@ export class HomePage {
     this.placesService.data = data;
   }
 
-  fetchData(countries: any){ 
+  fetchData(input_data: any){ 
     // this.countriesDataArray = [];
 
-    console.log(countries)
-    for (var c of countries){
-      const url = `https://api.datamuse.com/words?rel_jjb=${c.label}&md=s`;
+    console.log(input_data)
+    for (var c of input_data){
+      const url = `https://api.datamuse.com/words?${c.apiChoice}=${c.label}&md=s`;
     
-      const subscribeFunction = (label: string) => (data: any) => {
+      const subscribeFunction = (label: string, choice: string) => (data: any) => {
         var formatedData = {
           query: label,
+          apiChoice: choice,
           result: data,
         }
         // console.log(formatedData);
@@ -108,10 +109,22 @@ export class HomePage {
         // console.warn(this.countriesDataArray);
       };
     
-      this.http.get(url).subscribe(subscribeFunction(c.label));
+      this.http.get(url).subscribe(subscribeFunction(c.label, c.apiChoice));
     }
     console.log("Load data from API");
     
   }
 
+
+  getShortDescription(choice: string) {
+    const apiChoices: Map<string, string> = new Map([
+      ['rel_jjb', "Adjectives"],
+      ['ml', "Related"],
+      ['lc', "Following"],
+      ['sp', "RegEx"],
+    ]);
+    return apiChoices.get(choice)
+  }
+
 }
+

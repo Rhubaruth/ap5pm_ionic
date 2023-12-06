@@ -24,7 +24,7 @@
       <div *ngIf="item.result.length > 0">
         <ion-item [routerLink]="['/detail', item.result[0].word]"
                   (click)="sendData(item)">
-                    {{ item.result[0].word }} 
+                    {{ getShortDescription(item.apiChoice) }} 
         </ion-item>
       </div>
 

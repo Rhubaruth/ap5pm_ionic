@@ -12,15 +12,10 @@ import { Preferences } from '@capacitor/preferences';
 export class WeatherModalComponent {
   items = this.getItems();
   inputed_word: string = "";
+  apiChoice: string = "";
   
   constructor(private modalCTRL: ModalController) {
-    this.items = [
-      { label: "ocean", checked: false},
-      { label: "duck", checked: false},
-      { label: "silly", checked: false},
-      { label: "dungeon", checked: false},
-      { label: "dragons", checked: false},
-    ];
+    this.items = this.getItems(); 
 
 // Capacitor step 2
     const getStoredItems = async () => {
@@ -49,8 +44,9 @@ export class WeatherModalComponent {
 
    submit(){
     const selectedItems = this.items.filter((item) => item.checked);
+    console.log(this.apiChoice)
 
-    // Capacitor step 3
+    /* Capacitor step 3 */
     const saveStoredItems = async () => {
       await Preferences.set({
         key: "jsonData",
@@ -58,10 +54,10 @@ export class WeatherModalComponent {
       });
     };
 
-    saveStoredItems();
-    // this.modalCTRL.dismiss(selectedItems, "location");
+    // saveStoredItems();
     var inputed = {
       label: this.inputed_word,
+      apiChoice: this.apiChoice,
       checked: false,
     }
     this.modalCTRL.dismiss([inputed], "location");
@@ -70,11 +66,10 @@ export class WeatherModalComponent {
 
    getItems(){
     return [
-      { label: "ocean", checked: false},
-      { label: "duck", checked: false},
-      { label: "silly", checked: false},
-      { label: "dungeon", checked: false},
-      { label: "dragons", checked: false},
+      { label: "Describing adjective", checked: true, value: "rel_jjb"},
+      { label: "Related world", checked: false, value: "ml"},
+      { label: "Following world", checked: false, value: "lc"},
+      { label: "Regular Expresion", checked: false, value: "sp"},
     ]
    }
 

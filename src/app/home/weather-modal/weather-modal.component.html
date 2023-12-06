@@ -3,10 +3,14 @@
 
   <ion-list>
     <ion-input type="text" [(ngModel)]="inputed_word" text-right id="input" ></ion-input>
-    <!--<ion-item *ngFor="let item of items">
-      <ion-label>{{ item.label }}</ion-label>
-      <ion-checkbox [(ngModel)]="item.checked"> </ion-checkbox>
-    </ion-item> -->
+
+    <ion-radio-group value="apiChoice" [(ngModel)]="apiChoice">
+      <ion-item *ngFor="let item of items">
+        <ion-label>{{ item.label }}</ion-label>
+        <ion-radio value="{{ item.value }}"> </ion-radio>
+      </ion-item>
+
+    </ion-radio-group>
   </ion-list>
 
   <ion-button (click)="submit()">Submit</ion-button>
