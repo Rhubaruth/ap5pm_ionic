@@ -7,7 +7,7 @@ import { PlacesService } from '../services/places/places.service';
 
 // npm install @capacitor/preferences in the app folder
 import { Preferences } from '@capacitor/preferences';
-
+import { SplashScreen } from '@capacitor/splash-screen';
 
 
 @Component({
