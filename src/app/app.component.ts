@@ -11,6 +11,4 @@ export class AppComponent {
 }
 
 // SplashScreen.hide()
-SplashScreen.show({
-  autoHide: false,
-});
+SplashScreen.hide();
