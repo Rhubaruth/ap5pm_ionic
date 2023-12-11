@@ -60,8 +60,12 @@ export class HomePage {
     }
   }
 
-  async deleteItem(word: String){
-    var index =  this.countriesDataArray.findIndex(x => x.query==word);
+  async deleteItem(selected: any){
+    console.log(selected)
+    var index =  this.countriesDataArray.findIndex(
+      x => x.query==selected.query
+        && x.apiChoice==selected.apiChoice
+        && x.regex==selected.regex);
     console.log(index);
 
     this.countriesDataArray.splice(index, 1)
@@ -86,12 +90,16 @@ export class HomePage {
 
     console.log(input_data)
     for (var c of input_data){
-      const url = `https://api.datamuse.com/words?${c.apiChoice}=${c.label}&md=s`;
+      const url = `https://api.datamuse.com/words?${c.apiChoice}=${c.label}&md=s&sp=${c.regex}`;
+      console.log(url)
     
-      const subscribeFunction = (label: string, choice: string) => (data: any) => {
+      const subscribeFunction = (
+          label: string, choice: string, regex: string
+          ) => (data: any) => {
         var formatedData = {
           query: label,
           apiChoice: choice,
+          regex: regex,
           result: data,
         }
         // console.log(formatedData);
@@ -109,7 +117,8 @@ export class HomePage {
         // console.warn(this.countriesDataArray);
       };
     
-      this.http.get(url).subscribe(subscribeFunction(c.label, c.apiChoice));
+      this.http.get(url).subscribe(
+        subscribeFunction(c.label, c.apiChoice, c.regex));
     }
     console.log("Load data from API");
     

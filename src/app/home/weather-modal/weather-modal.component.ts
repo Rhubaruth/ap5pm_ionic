@@ -36,6 +36,9 @@ export class WeatherModalComponent {
       });
     };
 
+    if(this.inputed_regex.length < 1)
+      this.inputed_regex = "*"
+
     // saveStoredItems();
     var inputed = {
       label: this.inputed_word,
@@ -52,7 +55,6 @@ export class WeatherModalComponent {
       { label: "Describing adjective", checked: true, value: "rel_jjb"},
       { label: "Related world", checked: false, value: "ml"},
       { label: "Following world", checked: false, value: "lc"},
-      { label: "Regular Expresion", checked: false, value: "sp"},
     ]
   }
 
