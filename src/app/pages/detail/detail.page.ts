@@ -21,28 +21,10 @@ export class DetailPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    // console.log(this.placeService.data)
     this.allData = this.placeService.data; 
 
-    // console.log("All data");
-    // console.log(this.allData);
-
     this.myArray = this.allData.result.slice(0, 10);
-    console.log(this.myArray)
-
-    //new 
-    // const url = this.allData.coatOfArms.png;
-    // this.imageURL = url;
-    // this.myDomain = this.allData.tld[0];
-    
-    // this.startOfWeek = this.allData.startOfWeek;
-    // this.population = this.allData.population;
-    // this.region = this.allData.region;
-
-
-
-   // const map = this.allData.maps.googleMaps;
-   // this.mapURL = map;
+    // console.log(this.myArray)
 
 
     //this.myIframe = `<iframe src="${this.mapURL}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;

@@ -25,16 +25,7 @@ export class WeatherModalComponent {
   }
 
   submit(){
-    const selectedItems = this.items.filter((item) => item.checked);
     console.log(this.apiChoice)
-
-    /* Capacitor step 3 */
-    const saveStoredItems = async () => {
-      await Preferences.set({
-        key: "jsonData",
-        value: JSON.stringify(selectedItems)
-      });
-    };
 
     if(this.inputed_regex.length < 1)
       this.inputed_regex = "*"

@@ -21,10 +21,8 @@ export class HomePage {
   constructor(
     public modalCTRL: ModalController, 
     public http: HttpClient, 
-    // new
 
     private placesService: PlacesService
-   // private placesService: PlacesService
     ) {
 
     // Step 1 for countries fetch in HomePage constructor
@@ -34,7 +32,7 @@ export class HomePage {
       });
 
       if (value) {
-        const fetchedItems = JSON.parse(value); // T F T F
+        const fetchedItems = JSON.parse(value); 
         this.countriesDataArray = fetchedItems;
       }
     }
@@ -54,7 +52,6 @@ export class HomePage {
     // Read data
     if (role === "location"){
       console.log(newData);
-
       this.fetchData(newData);
 
     }
@@ -86,8 +83,6 @@ export class HomePage {
   }
 
   fetchData(input_data: any){ 
-    // this.countriesDataArray = [];
-
     console.log(input_data)
     for (var c of input_data){
       const url = `https://api.datamuse.com/words?${c.apiChoice}=${c.label}&md=s&sp=${c.regex}`;
@@ -102,7 +97,6 @@ export class HomePage {
           regex: regex,
           result: data,
         }
-        // console.log(formatedData);
         this.countriesDataArray.push(formatedData);
     
         // Step 3 save data
