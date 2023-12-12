@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 // Capacitor step 1
 import { Preferences } from '@capacitor/preferences';
@@ -13,20 +14,27 @@ export class WeatherModalComponent {
   items = this.getItems();
   inputed_word: string = "";
   inputed_regex: string = "";
-  apiChoice: string = "";
+  apiChoice: string = "rel_jjb";
   
-  constructor(private modalCTRL: ModalController) {
+  constructor(private modalCTRL: ModalController, private alertCTRL: AlertController) {
     this.items = this.getItems(); 
   }
-
 
   dismissModal(){
     this.modalCTRL.dismiss(null, "cancel");
   }
 
-  submit(){
-    console.log(this.apiChoice)
-
+  async submit(){
+    if(this.inputed_word.trim().length < 1 || this.apiChoice.length < 1) {
+      const alert = await this.alertCTRL.create({
+        header: 'Error',
+        message: 'You must input a word',
+        buttons: ['OK']
+      });
+      await alert.present();
+      return;
+    }
+    
     if(this.inputed_regex.length < 1)
       this.inputed_regex = "*"
 

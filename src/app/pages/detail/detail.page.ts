@@ -8,13 +8,7 @@ import { PlacesService } from '../../services/places/places.service';
 })
 export class DetailPage implements OnInit {
   allData: any; 
-  imageURL: string = "empty"; 
-  region = "";
-  population = "";
-  startOfWeek = "";
-  myDomain = "";
-  myArray=[];
-
+  sortedResult: Map<string, any> = new Map();
 
   constructor(
     private placeService: PlacesService 
@@ -23,11 +17,26 @@ export class DetailPage implements OnInit {
   ngOnInit() {
     this.allData = this.placeService.data; 
 
-    this.myArray = this.allData.result.slice(0, 10);
-    // console.log(this.myArray)
+    let myArray = this.allData.result.slice(0, 20);
+    myArray.sort( (a: any, b: any) => a.numSyllables - b.numSyllables);
+    
+    myArray.forEach((element: any) => {
+      if(this.sortedResult.has(element.numSyllables)) {
+        let list: Array<string> = this.sortedResult.get(element.numSyllables)
+        list.push(element.word)
+        this.sortedResult.set(element.numSyllables, list)
+      } else {
+        this.sortedResult.set(element.numSyllables, new Array<string>(element.word))
+      }
+    });
 
-
-    //this.myIframe = `<iframe src="${this.mapURL}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`;
+    this.sortedResult.forEach((value: Array<string>, key: string) => {
+      this.sortedResult.set(key, value.sort()) 
+    })
   }
 
+  // Convert the Map to an array of key-value pairs
+  getSharedPositionArray() {
+    return Array.from(this.sortedResult.entries());
+  }
 }

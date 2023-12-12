@@ -93,7 +93,7 @@ export class HomePage {
           ) => (data: any) => {
         var formatedData = {
           query: label,
-          apiChoice: choice,
+          apiChoice: this.getShortDescription(choice),
           regex: regex,
           result: data,
         }

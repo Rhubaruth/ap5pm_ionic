@@ -1,27 +1,15 @@
 #container {
-  text-align: center;
+  display: flex;
+  margin-left: 1rem;
+  margin-right: auto;
+};
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+#openModal {
+  margin-left: 1.2rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
+#button {
+  margin-left: auto;
 }

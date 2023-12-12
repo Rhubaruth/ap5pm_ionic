@@ -14,21 +14,21 @@
   </ion-header>
 
   <div >
-    <ion-button (click) = "openModal()">Open modal</ion-button> 
+    <ion-button id="openModal" (click)="openModal()">Open modal</ion-button> 
   </div>
 
   <div *ngIf="countriesDataArray.length > 0">
-    <ion-item *ngFor="let item of countriesDataArray">
+    <ion-item id="container" *ngFor="let item of countriesDataArray">
       <h2> {{ item.query }} </h2>
 
       <div *ngIf="item.result.length > 0">
         <ion-item [routerLink]="['/detail', item.result[0].word]"
                   (click)="sendData(item)">
-                    {{ getShortDescription(item.apiChoice) }} 
+                    {{ item.apiChoice }} 
         </ion-item>
       </div>
 
-      <ion-button (click)="deleteItem(item)">Delete</ion-button> 
+      <ion-button id="button" (click)="deleteItem(item)">Delete</ion-button> 
 
     </ion-item>
 

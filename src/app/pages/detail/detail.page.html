@@ -12,156 +12,24 @@
   </ion-header>
 
 
-
-  <div class="sideBySide">
-    <h1 class="header"> {{ allData.query }}</h1>
+  <div class="container header">
+    <h1> {{ allData.query }}</h1>
+    <h2> ({{ allData.apiChoice }}) </h2>
+  </div>
+  <div>
+    <p class="header subheader"> Used Regex: {{ allData.regex }} </p>
   </div>
 
-  <div id="columns">
+  <div>
+    <div class="words" *ngFor="let pair of getSharedPositionArray()">
+      <h2 *ngIf="pair[0] == '1'"> {{ pair[0] }} Syllabel </h2>
+      <h2 *ngIf="pair[0] != '1'"> {{ pair[0] }} Syllabels </h2>
 
-    <div id="right">
-      <div *ngFor="let item of myArray">
-        {{ item["word"] }} {{ item["numSyllables"] }}
-        <br>
+      <div *ngFor="let word of pair[1]">
+        {{ word }} 
       </div>
     </div>
-  
   </div>
 
 
-  <style>
-
-    .sideBySide {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      margin-top: 1rem;
-    }
-
-  .detailImage {
-      width: 200px;
-  }
-
-  .header {
-    font-size: 4rem; /* 4 * 16px */
-    font-weight: bold;
-    color: #3498db;
-    background: linear-gradient(to left, #3498db,  #2980b9);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-left: 1rem;
-    margin-right: 3rem;
-  }
-
-
-  #columns div h2 {
-    margin: 1rem;
-    background: #34495e;
-    width: 12rem;
-    border-radius: 6px;
-    padding: 0.3rem;
-  }
-
-
-  #columns {
-    display: flex;
-  }
-
-  /* less than 700px make 1 column */
-
-  @media only screen and (max-width: 700px){
-    #columns {
-      flex-direction: column;
-    }
-  }
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- /*   .sideBySide {
-      display: flex;
-      align-items: center;
-      margin-top: 1rem;
-      flex-wrap: wrap;
-     
-    }
-
-    .header {
-      color: #3498db;
-      font-weight: bold;
-      background: linear-gradient(to left, #3498db, rgb(78, 78, 216));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-size: 4rem;
-      margin-left: 1rem;
-      margin-right: 3rem;
-    }
-
-    .detailImage {
-      width: 200px;
-      height: 200px;
-
-      object-fit: cover;
-      border-radius: 50%;
-     
-    }
-
-
-    #columns {
-      display: flex;
-      width: 50%;
-     
-    }
-
-
-    #columns div h2 {
-      margin: 1rem;
-      background: #34495e;
-      width: 12rem;
-      border-radius: 6px;
-      padding: 0.3rem;
-    }
-
-
-    @media only screen and (max-width: 700px){
-      #columns {
-        flex-direction: column;
-      }
-    }
-
-*/
-
-  </style>
-
-
-
-
-
-<!---
-  <div>
-{{myIframe}}
-
-  </div>
---->
-  
 </ion-content>
