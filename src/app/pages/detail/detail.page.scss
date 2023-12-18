@@ -1,10 +1,12 @@
+@import '../../../theme/variables.scss';
+
+
 .header {
-    color: #3498db;
-    background: linear-gradient(to left, #3498db,  #2980b9);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
     margin-left: 1rem;
-    margin-right: 3rem;
 }
 
 .header h1 {
@@ -15,23 +17,19 @@
 .header h2 {
     font-size: 1.5rem; /* 4 * 16px */
     font-weight: bold;
-    margin-top: 0;
-    display: flex;
-    text-align: center;
 }
 
 .subheader {
-    -webkit-text-fill-color: whitesmoke !important;
     font-size: 1rem; /* 4 * 16px */
     font-weight: bold;
+
     margin-top: 0;
+    margin-left: 1rem;
 }
 
 .words {
-    margin: 1rem;
-    margin-top: 0.2rem;
+    margin-left: 1rem;
     width: 12rem;
-    background: #34495e;
     border-radius: 6px;
     padding: 0.3rem;
     display: flex;
@@ -39,16 +37,17 @@
     align-items: flex-end;
 }
 
-.words h2 {
+.words * {
+    width: 100%;
+}
+
+.words-header {
     text-align: left;
+    margin-bottom: 0;
 }
 
-.words p {
-    text-align: right;
+.words-text {
+    color: var(--ion-text-color);
 }
 
-.container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
+

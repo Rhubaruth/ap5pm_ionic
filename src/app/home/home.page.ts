@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { WeatherModalComponent } from './weather-modal/weather-modal.component';
@@ -7,7 +7,7 @@ import { PlacesService } from '../services/places/places.service';
 
 // npm install @capacitor/preferences in the app folder
 import { Preferences } from '@capacitor/preferences';
-import { SplashScreen } from '@capacitor/splash-screen';
+import { ThemeService } from '../theme.service';
 
 
 @Component({
@@ -16,19 +16,25 @@ import { SplashScreen } from '@capacitor/splash-screen';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  // themes
+  public isDark: boolean = false;
+  
+
   countriesDataArray: any[] = [];
 
   constructor(
     public modalCTRL: ModalController, 
     public http: HttpClient, 
 
-    private placesService: PlacesService
+    private placesService: PlacesService,
+    private renderer: Renderer2,
     ) {
+      this.activeTheme(this.isDark)
 
-    // Step 1 for countries fetch in HomePage constructor
-    const getCountryData = async () => {
-      const { value } = await Preferences.get({
-        key: "homeFetchData"
+      // Step 1 for countries fetch in HomePage constructor
+      const getCountryData = async () => {
+        const { value } = await Preferences.get({
+          key: "homeFetchData"
       });
 
       if (value) {
@@ -38,8 +44,22 @@ export class HomePage {
     }
 
     getCountryData();
+  }
 
-    }
+  // set theme
+  onThemeChange(event: any) {
+    console.log(event.detail.checked)
+    this.isDark = event.detail.checked; 
+    this.activeTheme(this.isDark);
+  }
+
+  activeTheme(darkMode: boolean){
+    if(darkMode) {
+      this.renderer.setAttribute(document.body, 'color-theme', 'dark')
+    } else {
+      this.renderer.setAttribute(document.body, 'color-theme', 'light')
+    } 
+  }
 
   async openModal(){
     const modal = await this.modalCTRL.create({

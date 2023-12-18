@@ -11,23 +11,32 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-text color="primary">
+    <div class="header">
+      <h1> {{ allData.query }} </h1>
+      <h2> ({{ allData.apiChoice }}) </h2>
+    </div>
+  </ion-text>
 
-  <div class="container header">
-    <h1> {{ allData.query }}</h1>
-    <h2> ({{ allData.apiChoice }}) </h2>
-  </div>
   <div>
-    <p class="header subheader"> Used Regex: {{ allData.regex }} </p>
+    <ion-text>
+      <p class="subheader"> Used Regex: {{ allData.regex }} </p>
+    </ion-text>
   </div>
 
   <div>
     <div class="words" *ngFor="let pair of getSharedPositionArray()">
-      <h2 *ngIf="pair[0] == '1'"> {{ pair[0] }} Syllabel </h2>
-      <h2 *ngIf="pair[0] != '1'"> {{ pair[0] }} Syllabels </h2>
+      <ion-text color="secondary">
+        <h2 class="words-header" *ngIf="pair[0] == '1'"> {{ pair[0] }} Syllabel </h2>
+        <h2 class="words-header" *ngIf="pair[0] != '1'"> {{ pair[0] }} Syllabels </h2>
+      </ion-text>
 
-      <div *ngFor="let word of pair[1]">
-        {{ word }} 
-      </div>
+      <ion-card color="light">
+        <ion-card-content class="full-width">
+          <p class="words-text" *ngFor="let word of pair[1]"> {{ word }} </p>
+        </ion-card-content>
+      </ion-card>
+
     </div>
   </div>
 
