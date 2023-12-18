@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PlacesService } from '../../services/places/places.service';
 
+import { ThemeService } from 'src/app/theme.service';
+
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.page.html',
@@ -9,9 +11,11 @@ import { PlacesService } from '../../services/places/places.service';
 export class DetailPage implements OnInit {
   allData: any; 
   sortedResult: Map<string, any> = new Map();
+  public isDark: boolean = ThemeService.state;
 
   constructor(
-    private placeService: PlacesService 
+    private placeService: PlacesService,
+    public theme: ThemeService, 
   ) { }
 
   ngOnInit() {

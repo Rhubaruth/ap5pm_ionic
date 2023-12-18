@@ -1,6 +1,11 @@
 @import '../../../theme/variables.scss';
 
 
+.button {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
 .header {
     display: flex;
     flex-direction: row;

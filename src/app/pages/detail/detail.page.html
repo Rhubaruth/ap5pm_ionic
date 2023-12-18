@@ -1,6 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>detail</ion-title>
+
+    <ion-label slot="end"> Dark: </ion-label>
+    <ion-toggle class="button" slot="end" 
+      [(ngModel)]="isDark" (ionChange)="theme.onThemeChange($event)"></ion-toggle>
   </ion-toolbar>
 </ion-header>
 

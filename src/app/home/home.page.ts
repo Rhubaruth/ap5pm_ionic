@@ -17,7 +17,7 @@ import { ThemeService } from '../theme.service';
 })
 export class HomePage {
   // themes
-  public isDark: boolean = false;
+  public isDark: boolean = ThemeService.state;
   
 
   countriesDataArray: any[] = [];
@@ -28,8 +28,11 @@ export class HomePage {
 
     private placesService: PlacesService,
     private renderer: Renderer2,
+    public theme: ThemeService,
     ) {
-      this.activeTheme(this.isDark)
+      ThemeService.renderer = renderer
+      this.isDark = ThemeService.state
+      this.theme.activeTheme(this.isDark)
 
       // Step 1 for countries fetch in HomePage constructor
       const getCountryData = async () => {
@@ -46,19 +49,14 @@ export class HomePage {
     getCountryData();
   }
 
-  // set theme
-  onThemeChange(event: any) {
-    console.log(event.detail.checked)
-    this.isDark = event.detail.checked; 
-    this.activeTheme(this.isDark);
+  ionViewWillEnter(){
+    this.isDark = ThemeService.state
   }
 
-  activeTheme(darkMode: boolean){
-    if(darkMode) {
-      this.renderer.setAttribute(document.body, 'color-theme', 'dark')
-    } else {
-      this.renderer.setAttribute(document.body, 'color-theme', 'light')
-    } 
+  // set theme
+  onThemeChange(event: any) {
+    this.isDark = event.detail.checked
+    this.theme.activeTheme(this.isDark)
   }
 
   async openModal(){
